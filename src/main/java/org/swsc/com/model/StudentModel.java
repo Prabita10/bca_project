@@ -62,23 +62,22 @@ public class StudentModel {
 
         return studentList;
     }
-    public void delete()  {
+
+    public void delete(int id) {
         DbConnection dbConnection = new DbConnection();
         System.out.println("Connected to PostgreSql successfully");
-
-        String query = "delete from student ";
+        String query = "delete from student where id =?";
         PreparedStatement statement = null;
         try {
             statement = dbConnection.getConnection().prepareStatement(query);
+            statement.setInt(1, id);
             statement.executeUpdate();
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
 
-
     }
     // update
-    //delete
     // get by id
 }
